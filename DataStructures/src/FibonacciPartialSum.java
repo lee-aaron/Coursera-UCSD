@@ -26,16 +26,16 @@ public class FibonacciPartialSum {
         return sum % 10;
     }
     
-    private static int getSum(long m, long n) {
+    private static long getSum(long m, long n) {
     	long arr[] = new long [61];
     	arr[0] = 0;
     	arr[1] = 1;
     	for(int i = 2; i <= 60; i++) {
     		arr[i] = (arr[i-1] + arr[i-2]);
     	}
-    	int sum = 0;
-    	for(int j = (int)(m%60); j <= (n%60); j++) {
-    		sum += arr[j%60];
+    	long sum = 0;
+    	for(long j = (m%60); j <= (n%60); j++) {
+    		sum += arr[(int) (j%60)];
     	}
     	return sum%10;
     }

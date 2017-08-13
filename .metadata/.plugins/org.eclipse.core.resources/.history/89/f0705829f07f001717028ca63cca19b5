@@ -26,25 +26,25 @@ public class FibonacciPartialSum {
         return sum % 10;
     }
     
-    private static int getLastDigit(long n) {
-    	if(n <= 1) return (int)n;
-    	n %= 60;
-    	int dig[] = new int[(int)n+1];
-    	dig[0] = 0;
-    	dig[1] = 1;
-    	for(int i = 2; i <= n; i++) {
-    		dig[i] = (dig[i-1]%10 + dig[i-2]%10)%10;
+    private static int getSum(long m, long n) {
+    	long arr[] = new long [61];
+    	arr[0] = 0;
+    	arr[1] = 1;
+    	for(int i = 2; i <= 60; i++) {
+    		arr[i] = (arr[i-1] + arr[i-2]);
     	}
-    	if(dig[(int)n] == 0) return 9;
-    	return dig[(int)n]%10-1;
+    	int sum = 0;
+    	for(int j = (int)(m%60); j <= (n%60); j++) {
+    		sum += arr[j%60];
+    	}
+    	return sum%10;
     }
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         long from = scanner.nextLong();
         long to = scanner.nextLong();
-        System.out.println("from: " + getLastDigit(from+1) + " to: " + getLastDigit(to+2));
-        System.out.println((getLastDigit(to+2) - getLastDigit(from+1))%10);
+        System.out.println(getSum(from,to));
     }
 }
 
