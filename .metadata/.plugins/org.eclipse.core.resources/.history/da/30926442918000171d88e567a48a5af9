@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class LargestNumber {
+    private static String largestNumber(String[] a) {
+        //write your code here
+        String result = "";
+        while(a.length != 0) {
+        	int maxDigit = Integer.MIN_VALUE;
+        	for(String digit : a) {
+        		if(Integer.parseInt(digit) >= maxDigit) maxDigit = Integer.parseInt(digit);
+        	}
+        	result += maxDigit;
+        	List<String> list = new ArrayList<>();
+        	Collections.addAll(list, a);
+        	list.remove(Arrays.asList(String.valueOf(maxDigit)));
+        	a = list.toArray(a);
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        String[] a = new String[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = scanner.next();
+        }
+        System.out.println(largestNumber(a));
+    }
+}

@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class LargestNumber {
+    private static String largestNumber(String[] a) {
+        //write your code here
+        String result = "";
+        while(a.length != 0) {
+        	int maxDigit = Integer.MIN_VALUE;
+        	for(String digit : a) {
+        		if(Integer.parseInt(digit) >= maxDigit) maxDigit = Integer.parseInt(digit);
+        	}
+        	result += maxDigit;
+        }
+        return result;
+    }
+
+    private static boolean compare(String digit, int maxDigit) {
+    	String one = digit + String.valueOf(maxDigit);
+    	String two = String.valueOf(maxDigit) + digit;
+    	return one.compareTo(two) > 0 ? true : false;
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        String[] a = new String[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = scanner.next();
+        }
+        System.out.println(largestNumber(a));
+    }
+}
